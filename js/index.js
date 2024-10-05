@@ -1,11 +1,10 @@
 let danhSachNhanVien = [];
-//hiển thị ds nhân viên
-function renderTableDanhSachNhanVien() {
-  let tableBody = document.getElementById("tableDanhSach");
-  tableBody.innerHTML = "";
 
-  danhSachNhanVien.forEach((nv) => {
-    let row = `
+//hien thi ds nv ra table
+function renderTable() {
+  let content = "";
+  danhSachNhanVien.forEach((nv, index) => {
+    content += `
 <tr>
     <td>${nv.tknv}</td>
     <td>${nv.name}</td>
@@ -15,35 +14,38 @@ function renderTableDanhSachNhanVien() {
     <td>${nv.tinhTongLuong()}</td>
     <td>${nv.xepLoai()}</td>
     <td>
-        <button class="btn btn-danger" onclick ="xoaNhanVien('${
-          nv.tknv
-        }')">Xóa</button>
+         <button class = "btn btn-danger" onclick ="xoaNhanVien(${index})">Xóa</button>
     </td>
 </tr>
     `;
-    tableBody.innerHTML += row;
   });
+  document.getElementById("tableDanhSach").innerHTML = content;
 }
 
-//Xóa nv
-function xoaNhanVien(tknv) {
-  danhSachNhanVien = danhSachNhanVien.filter((nv) => nv.tknv !== tknv);
-  renderTableDanhSachNhanVien(); //cập nhật bảng sau xóa
+//xoa nhan vien khoi list
+function xoaNhanVien(index) {
+  danhSachNhanVien.splice(index, 1);
+  renderTable;
 }
-
 //
-function themNhanVienMoi() {
-  //
+document.getElementById("btnThemNV").addEventListener("click", function () {
+  //lay du lieu tu form
   let tknv = document.getElementById("tknv").value;
   let name = document.getElementById("name").value;
-  let email = document.getElementById("email").value;
-  let password = document.getElementById("password").value;
-  let datepicker = document.getElementById("datepicker").value;
-  let luongCB = parseFloat(document.getElementById("luongCB").value);
-  let chucvu = document.getElementById("chucvu").value;
-  let gioLam = parseFloat(document.getElementById("gioLam").value);
 
-  //tạo nv
+  let email = document.getElementById("email").value;
+
+  let password = document.getElementById("password").value;
+
+  let datepicker = document.getElementById("datepicker").value;
+
+  let luongCB = document.getElementById("luongCB").value;
+
+  let chucvu = document.getElementById("chucvu").value;
+
+  let gioLam = document.getElementById("gioLam").value;
+
+  //tạo nv mới
   let nhanVien = new NhanVien();
   nhanVien.tknv = tknv;
   nhanVien.name = name;
@@ -54,15 +56,12 @@ function themNhanVienMoi() {
   nhanVien.chucvu = chucvu;
   nhanVien.gioLam = gioLam;
 
-  //thêm ds
+  //add nv vao list
   danhSachNhanVien.push(nhanVien);
 
-  //cập nhật lại bảng
-  renderTableDanhSachNhanVien();
+  //hien thi ra table
+  renderTable();
 
-  //reset
-  document.getElementById("formThemNhanVien").reset();
-}
-
-//
-document.getElementById("btnThemNV").addEventListener("click", themNhanVienMoi);
+  //reset form sau khi add nv
+  document.getElementById("formNhanVien").reset();
+});
