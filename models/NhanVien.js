@@ -1,24 +1,13 @@
 class NhanVien {
-  constructor(
-    tknv,
-    name,
-    email,
-    password,
-    datepicker,
-    luongCB,
-    chucvu,
-    gioLam
-  ) {
-    this.tknv = tknv;
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.datepicker = datepicker;
-    this.luongCB = luongCB;
-    this.chucvu = chucvu;
-    this.gioLam = gioLam;
-  }
-  //tinh tong luong
+  tknv = "";
+  name = "";
+  email = "";
+  password = "";
+  datepicker = "";
+  luongCB = "";
+  chucvu = "";
+  gioLam = "";
+
   tinhTongLuong = function () {
     let tongLuong = 0;
     switch (this.chucvu) {
@@ -35,7 +24,7 @@ class NhanVien {
     return tongLuong;
   };
 
-  xepLoai() {
+  xepLoai = function () {
     let xepLoaiNV = "";
     let gioLamNV = this.gioLam * 1;
     console.log(gioLamNV);
@@ -49,5 +38,5 @@ class NhanVien {
       xepLoaiNV = "nhan vien xuat sac";
     }
     return xepLoaiNV;
-  }
+  };
 }
