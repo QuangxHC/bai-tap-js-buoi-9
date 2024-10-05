@@ -25,7 +25,7 @@ function renderTable() {
 //xoa nhan vien khoi list
 function xoaNhanVien(index) {
   danhSachNhanVien.splice(index, 1);
-  renderTable;
+  renderTable();
 }
 //
 document.getElementById("btnThemNV").addEventListener("click", function () {
@@ -39,7 +39,7 @@ document.getElementById("btnThemNV").addEventListener("click", function () {
 
   let datepicker = document.getElementById("datepicker").value;
 
-  let luongCB = document.getElementById("luongCB").value;
+  let luongCB = parseFloat(document.getElementById("luongCB").value);
 
   let chucvu = document.getElementById("chucvu").value;
 
